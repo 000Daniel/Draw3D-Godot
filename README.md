@@ -68,7 +68,7 @@ public partial class Draw3D : Node3D
     }
 }
 ```
-*(This script doesn’t need to be appended to any nodes in the scene)*
+*(This script doesn’t need to be appended to any nodes in the scene)* </br>
 </br>
 Now you should have two new methods to work with: </br>
 ```cs
@@ -81,13 +81,14 @@ Draw3D.Point();
 To draw a line you’ll need to specify where it starts and where it ends: </br>
 ```cs
 public override void _Ready()
-    {
-        Vector3 from = new Vector3(-2,1,2);
-        Vector3 to = new Vector3(2,1,-2);
-        Draw3D.Line(from,to);
-    }
+{
+    Vector3 from = new Vector3(-2,1,2);
+    Vector3 to = new Vector3(2,1,-2);
+    Draw3D.Line(from,to);
+}
 ```
 If you run this code, you should see a white line appear. </br>
+</br>
 You can also change its [color](https://docs.godotengine.org/en/stable/classes/class_color.html) like this: </br>
 ```cs
 Vector3 from = new Vector3(-2,1,2);
@@ -101,11 +102,12 @@ Now you’ll have a red line. </br>
 Vector3 position = new Vector3(0,1,0);
 Draw3D.Point(position,0.1f,Colors.Orange);
 ```
+</br>
 
 ## Script Explanation
 This section will explain what the Draw3D.cs script does and how to change it to suit your needs. </br>
 
-First we declare our types: </br>
+*First we declare our types:* </br>
 [meshInstance](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d) – a representation of an object in our scene. </br>
 [immediateMesh](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html) – a representation of the mesh’s shape/vertex data. </br>
 [More on how to use ImmediateMesh](https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/immediatemesh.html) </br>
@@ -116,7 +118,7 @@ var immediateMesh = new ImmediateMesh();
 var material = new StandardMaterial3D();
 ```
 
-Apply the immediateMesh/*(shape)* to our meshInstance/*(object)*. </br>
+Apply the immediateMesh *(shape)* to our meshInstance *(object)*. </br>
 ```cs
 meshInstance.Mesh = immediateMesh;
 ```
@@ -172,6 +174,7 @@ sphereMesh.Radius = radius;
 sphereMesh.Height = radius * 2f;
 sphereMesh.Material = material;
 ```
+</br>
 
 ## Extra Draw3D Shapes
 ### Box (with transparency)
@@ -204,7 +207,7 @@ public static MeshInstance3D Box(Vector3 position, Vector3? size = null, Color? 
 }
 ```
 In the material section to make a shape transparent we can set its alpha mode. </br>
-We can also change its color with Color8: </br>
+We can also change its color with [Color8](https://docs.godotengine.org/en/stable/classes/class_%40gdscript.html#method-descriptions): </br>
 ```cs
 material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 material.AlbedoColor = color ?? Color.Color8(100,100,100,100);
@@ -244,7 +247,7 @@ Draw3D.Beam(from,to,0.05f,Colors.Aquamarine,32,4); // (start pos, end pos, width
 Draw3D.cs code:
 ```cs
 public static Node3D Beam(Vector3 from, Vector3 to, float thickness = 0.05f, Color? color = null, int segments = 32, int rings = 4)
-    {
+{
     if (to == from)
     {
         GD.PrintErr("Draw3D: The 'from' and 'to' vectors cannot be the same when drawing a beam!");
@@ -304,15 +307,15 @@ Later it also checks if the two points are above each other, if so don’t use t
 
 ### Redraw Draw3D.Axis
 ```cs
-    Node3D line;
-    Vector3 from = new Vector3(1,1,2);
-    Vector3 to = new Vector3(3,1,-2);
+Node3D line;
+Vector3 from = new Vector3(1,1,2);
+Vector3 to = new Vector3(3,1,-2);
 
-    public override void _PhysicsProcess(double delta)
-    {
-        if (line != null)
-            line.QueueFree();
+public override void _PhysicsProcess(double delta)
+{
+    if (line != null)
+        line.QueueFree();
 
-        line = Draw3D.Line(from,to,Colors.Red);
-    }
+    line = Draw3D.Line(from,to,Colors.Red);
+}
 ```
