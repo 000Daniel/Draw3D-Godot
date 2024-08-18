@@ -14,7 +14,7 @@ This guide will focus on adding this missing function to your Godot project. </b
 </br>
 
 This page was largely inspired by [Ryan Mirch's Draw3D script](https://github.com/Ryan-Mirch/Line-and-Sphere-Drawing). </br>
-[GD script youtube tutorial](https://www.youtube.com/watch?v=JnrhURF1jgM) </br>
+[[GD script youtube tutorial]](https://www.youtube.com/watch?v=JnrhURF1jgM) </br>
 </br>
 
 ## Adding Draw3D
@@ -113,7 +113,7 @@ This section will explain what the Draw3D.cs script does and how to change it to
 *First we declare our types:* </br>
 [meshInstance](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d) – a representation of an object in our scene. </br>
 [immediateMesh](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html) – a representation of the mesh’s shape/vertex data. </br>
-[/[More on how to use ImmediateMesh/]](https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/immediatemesh.html) </br>
+[[More on how to use ImmediateMesh]](https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/immediatemesh.html) </br>
 [material](https://docs.godotengine.org/en/stable/classes/class_material.html) – a representation of the mesh’s texture. </br>
 ```cs
 var meshInstance = new MeshInstance3D();
