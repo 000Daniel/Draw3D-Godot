@@ -8,7 +8,7 @@ This guide will focus on adding this missing function to your Godot project. </b
 </br>
 
 <p align="center" width="100%">
-<img src="assets/GodotLogo.png" width="40%">
+<img src="assets/Draw3DGraphic_site.png" width="40%">
 </p>
 
 </br>
@@ -90,6 +90,8 @@ public override void _Ready()
 }
 ```
 If you run this code, you should see a white line appear. </br>
+<img src="assets/DrawLine.png" width="55%">
+
 </br>
 You can also change its [color](https://docs.godotengine.org/en/stable/classes/class_color.html) like this: </br>
 ```cs
@@ -98,6 +100,7 @@ Vector3 to = new Vector3(2,1,-2);
 Draw3D.Line(from,to,Colors.Red);
 ```
 Now you’ll have a red line. </br>
+<img src="assets/DrawLineRed.png" width="55%">
 
 ## Using Draw3D.Point()
 You'll need to specify a position, and optionaly a size and color. </br>
@@ -105,6 +108,7 @@ You'll need to specify a position, and optionaly a size and color. </br>
 Vector3 position = new Vector3(0,1,0);
 Draw3D.Point(position,0.1f,Colors.Orange);
 ```
+<img src="assets/DrawPoint.png" width="55%">
 </br>
 
 ## Script Explanation
@@ -215,6 +219,7 @@ We can also change its color with [Color8](https://docs.godotengine.org/en/stabl
 material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 material.AlbedoColor = color ?? Color.Color8(100,100,100,100);
 ```
+<img src="assets/DrawBox.png" width="55%">
 
 ### 3D Axis
 Use example: </br>
@@ -241,6 +246,7 @@ public static Node3D Axis(Vector3 position, float length = 0.5f)
 }
 ```
 In this example we create a ‘helper_node’ which contains all of our geometry data. </br>
+<img src="assets/DrawAxis.png" width="55%">
 
 ### Beam (Thick line)
 Use example:
@@ -307,6 +313,7 @@ The ‘helper_node’ is rotated to look at the end position and its moved to be
 </br>
 In the beginning the script checks if the two points aren’t in the same location and if they are it throws an error and returns a null value. </br>
 Later it also checks if the two points are above each other, if so don’t use the LookAtFromPosition() function since it thrown an exception in this instance. </br>
+<img src="assets/DrawBeam.png" width="55%">
 
 ### Redraw Draw3D.Axis
 ```cs
