@@ -77,8 +77,6 @@ public partial class Draw3D : Node3D
 ```
 *(This script doesn’t need to be appended to any nodes in the scene)* <br>
 
-<br>
-
 Now you should have two new methods to work with: <br>
 ```cs
 Draw3D.Line();
@@ -92,9 +90,9 @@ To draw a line you’ll need to specify where it starts and where it ends: <br>
 ```cs
 public override void _Ready()
 {
-    Vector3 from = new Vector3(-2,1,2);
-    Vector3 to = new Vector3(2,1,-2);
-    Draw3D.Line(from,to);
+    Vector3 from = new Vector3(-2,1,2);
+    Vector3 to = new Vector3(2,1,-2);
+    Draw3D.Line(from,to);
 }
 ```
 If you run this code, you should see a white line appear. <br>
