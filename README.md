@@ -105,7 +105,7 @@ Now you’ll have a red line. </br>
 <img src="assets/DrawLineRed.png" width="55%">
 
 ## Using Draw3D.Point()
-You'll need to specify a position, and optionaly a size and color. </br>
+You'll need to specify a position, and optionally a size and color. </br>
 ```cs
 Vector3 position = new Vector3(0,1,0);
 Draw3D.Point(position,0.1f,Colors.Orange);
@@ -118,7 +118,7 @@ This section will explain what the Draw3D.cs script does and how to change it to
 
 *First we declare our types:* </br>
 [meshInstance](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html#class-meshinstance3d) – a representation of an object in our scene. </br>
-[immediateMesh](https://docs.godotengine.org/en/stable/classes/class_meshinstance3d.html) – a representation of the mesh’s shape/vertex data. </br>
+[immediateMesh](https://docs.godotengine.org/en/stable/classes/class_immediatemesh.html#class-immediatemesh) – a representation of the mesh’s shape/vertex data. </br>
 [[More on how to use ImmediateMesh]](https://docs.godotengine.org/en/stable/tutorials/3d/procedural_geometry/immediatemesh.html) </br>
 [material](https://docs.godotengine.org/en/stable/classes/class_material.html) – a representation of the mesh’s texture. </br>
 ```cs
@@ -164,6 +164,7 @@ Adds the meshInstance to our scene’s root node, therefor drawing a line. </br>
 ```cs
 (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", meshInstance);
 ```
+</br>
 
 ## Script Explanation - Draw3D.Point()
 Instead of immediateMesh we can use a [SphereMesh](https://docs.godotengine.org/en/3.0/classes/class_spheremesh.html). </br>
@@ -177,7 +178,7 @@ meshInstance.Mesh = sphereMesh;
 meshInstance.Position = position;
 ```
 
-Set the sphere’s radius/*(width)*, height and material. </br>
+Set the sphere’s radius *(width)*, height and material. </br>
 ```cs
 sphereMesh.Radius = radius;
 sphereMesh.Height = radius * 2f;
@@ -191,12 +192,12 @@ sphereMesh.Material = material;
 
 Use example: </br>
 ```cs
-Draw3D.Box(position,new Vector3(2,0.5f,1));
+Draw3D.Box(position,new Vector3(2,0.5f,1)); // (position,size)
 ```
 Draw3D.cs code:
 ```cs
 public static MeshInstance3D Box(Vector3 position, Vector3? size = null, Color? color = null)
-    {
+{
     var meshInstance = new MeshInstance3D();
     var boxMesh = new BoxMesh();
     var material = new StandardMaterial3D();
@@ -223,13 +224,14 @@ We can also change its color with [Color8](https://docs.godotengine.org/en/stabl
 material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 material.AlbedoColor = color ?? Color.Color8(100,100,100,100);
 ```
+</br>
 
 ### 3D Axis
 <img src="assets/DrawAxis.png" width="55%">
 
 Use example: </br>
 ```cs
-Draw3D.Axis(position,1f); // (position,axis length)
+Draw3D.Axis(position,1f); // (position,axis' arrows length)
 ```
 Draw3D.cs code:
 ```cs
@@ -251,8 +253,11 @@ public static Node3D Axis(Vector3 position, float length = 0.5f)
 }
 ```
 In this example we create a ‘helper_node’ which contains all of our geometry data. </br>
+</br>
 
 ### Beam (Thick line)
+<img src="assets/DrawBeam.png" width="55%">
+
 Use example:
 ```cs
 Draw3D.Beam(from,to,0.05f,Colors.Aquamarine,32,4); // (start pos, end pos, width, color, segments, rings)
@@ -311,15 +316,15 @@ public static Node3D Beam(Vector3 from, Vector3 to, float thickness = 0.05f, Col
    return helper_node;
 }
 ```
-To draw a thick line, this script generates a capsule mesh, with the appropriate length(distance of the two points), width, geometrical segments and rings. </br>
+To draw a thick line, this script generates a capsule mesh, with the appropriate length(distance of the two points), width, geometrical segments and geometrical rings. </br>
 The capsule(meshInstance) is then rotated 90° degrees on the X axis so that its head would point forward. </br>
 The ‘helper_node’ is rotated to look at the end position and its moved to be in the middle of the two points. </br>
 </br>
 In the beginning the script checks if the two points aren’t in the same location and if they are it throws an error and returns a null value. </br>
 Later it also checks if the two points are above each other, if so don’t use the LookAtFromPosition() function since it thrown an exception in this instance. </br>
-<img src="assets/DrawBeam.png" width="55%">
+</br>
 
-### Redraw Draw3D.Axis
+### Redraw Draw3D
 ```cs
 Node3D line;
 Vector3 from = new Vector3(1,1,2);
