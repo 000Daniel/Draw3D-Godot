@@ -90,9 +90,9 @@ public override void _Ready()
 }
 ```
 If you run this code, you should see a white line appear. </br>
-<img src="assets/DrawLine.png" width="55%">
-
+<img src="assets/DrawLine.png" width="55%"> 
 </br>
+
 You can also change its [color](https://docs.godotengine.org/en/stable/classes/class_color.html) like this: </br>
 ```cs
 Vector3 from = new Vector3(-2,1,2);
@@ -185,6 +185,8 @@ sphereMesh.Material = material;
 
 ## Extra Draw3D Shapes
 ### Box (with transparency)
+<img src="assets/DrawBox.png" width="55%">
+
 Use example: </br>
 ```cs
 Draw3D.Box(position,new Vector3(2,0.5f,1));
@@ -219,9 +221,10 @@ We can also change its color with [Color8](https://docs.godotengine.org/en/stabl
 material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
 material.AlbedoColor = color ?? Color.Color8(100,100,100,100);
 ```
-<img src="assets/DrawBox.png" width="55%">
 
 ### 3D Axis
+<img src="assets/DrawAxis.png" width="55%">
+
 Use example: </br>
 ```cs
 Draw3D.Axis(position,1f); // (position,axis length)
@@ -246,7 +249,6 @@ public static Node3D Axis(Vector3 position, float length = 0.5f)
 }
 ```
 In this example we create a ‘helper_node’ which contains all of our geometry data. </br>
-<img src="assets/DrawAxis.png" width="55%">
 
 ### Beam (Thick line)
 Use example:
