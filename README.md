@@ -10,11 +10,13 @@ This guide will focus on adding this missing function to your Godot project. </b
 <p align="center" width="100%">
 <img src="assets/Draw3DGraphic_site.png" width="40%">
 </p>
-
 </br>
 
-This page was largely inspired by [Ryan Mirch's Draw3D script](https://github.com/Ryan-Mirch/Line-and-Sphere-Drawing). </br>
-[[GD script youtube tutorial]](https://www.youtube.com/watch?v=JnrhURF1jgM) </br>
+<p align="center" width="100%">
+This page was largely inspired by 
+<a href="https://github.com/Ryan-Mirch/Line-and-Sphere-Drawing">Ryan Mirch's Draw3D script</a>. </br>
+<a href="https://www.youtube.com/watch?v=JnrhURF1jgM">[GD script youtube tutorial]</a> </br>
+</p>
 </br>
 
 ## Adding Draw3D
