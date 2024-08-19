@@ -30,49 +30,49 @@ using Godot;
 
 public partial class Draw3D : Node3D
 {
-    public static MeshInstance3D Line(Vector3 from, Vector3 to, Color? color = null)
-    {
-        var meshInstance = new MeshInstance3D();
-        var immediateMesh = new ImmediateMesh();
-        var material = new StandardMaterial3D();
+    public static MeshInstance3D Line(Vector3 from, Vector3 to, Color? color = null)
+    {
+        var meshInstance = new MeshInstance3D();
+        var immediateMesh = new ImmediateMesh();
+        var material = new StandardMaterial3D();
 
-        meshInstance.Mesh = immediateMesh;
-        meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+        meshInstance.Mesh = immediateMesh;
+        meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
 
-        immediateMesh.SurfaceBegin(Mesh.PrimitiveType.Lines, material);
-        immediateMesh.SurfaceAddVertex(from);
-        immediateMesh.SurfaceAddVertex(to);
-        immediateMesh.SurfaceEnd();
+        immediateMesh.SurfaceBegin(Mesh.PrimitiveType.Lines, material);
+        immediateMesh.SurfaceAddVertex(from);
+        immediateMesh.SurfaceAddVertex(to);
+        immediateMesh.SurfaceEnd();
 
-        material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
-        material.AlbedoColor = color ?? Colors.WhiteSmoke;
+        material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
+        material.AlbedoColor = color ?? Colors.WhiteSmoke;
 
-        (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", meshInstance);
+        (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", meshInstance);
 
-        return meshInstance;
-    }
+        return meshInstance;
+    }
 
-    public static MeshInstance3D Point(Vector3 position, float radius = 0.05f, Color? color = null)
-    {
-        var meshInstance = new MeshInstance3D();
-        var sphereMesh = new SphereMesh();
-        var material = new StandardMaterial3D();
+    public static MeshInstance3D Point(Vector3 position, float radius = 0.05f, Color? color = null)
+    {
+        var meshInstance = new MeshInstance3D();
+        var sphereMesh = new SphereMesh();
+        var material = new StandardMaterial3D();
 
-        meshInstance.Mesh = sphereMesh;
-        meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
-        meshInstance.Position = position;
+        meshInstance.Mesh = sphereMesh;
+        meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+        meshInstance.Position = position;
 
-        sphereMesh.Radius = radius;
-        sphereMesh.Height = radius * 2f;
-        sphereMesh.Material = material;
+        sphereMesh.Radius = radius;
+        sphereMesh.Height = radius * 2f;
+        sphereMesh.Material = material;
 
-        material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
-        material.AlbedoColor = color ?? Colors.WhiteSmoke;
+        material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
+        material.AlbedoColor = color ?? Colors.WhiteSmoke;
 
-        (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", meshInstance);
+        (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", meshInstance);
 
-        return meshInstance;
-    }
+        return meshInstance;
+    }
 }
 ```
 *(This script doesn’t need to be appended to any nodes in the scene)* <br>
@@ -208,21 +208,21 @@ Draw3D.cs code:
 ```cs
 public static MeshInstance3D Box(Vector3 position, Vector3? size = null, Color? color = null)
 {
-    var meshInstance = new MeshInstance3D();
-    var boxMesh = new BoxMesh();
-    var material = new StandardMaterial3D();
+    var meshInstance = new MeshInstance3D();
+    var boxMesh = new BoxMesh();
+    var material = new StandardMaterial3D();
 
-    meshInstance.Mesh = boxMesh;
+    meshInstance.Mesh = boxMesh;
     meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
     meshInstance.Position = position;
 
     boxMesh.Size = size ?? new Vector3(0.5f,0.5f,0.5f);
-    boxMesh.Material = material;
+    boxMesh.Material = material;
 
-    material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
-    material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
-    material.AlbedoColor = color ?? Color.Color8(100,100,100,100);
-        
+    material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
+    material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+    material.AlbedoColor = color ?? Color.Color8(100,100,100,100);
+
     (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", meshInstance);
 
     return meshInstance;
@@ -248,19 +248,19 @@ Draw3D.cs code:
 ```cs
 public static Node3D Axis(Vector3 position, float length = 0.5f)
 {
-    Node3D helper_node = new Node3D();
+    Node3D helper_node = new Node3D();
 
-    var meshInstance_AxisUp = Line(position,position + Vector3.Up * length, Colors.WebGreen);
-    var meshInstance_AxisLeft = Line(position,position + Vector3.Left * length, Colors.Red);
-    var meshInstance_AxisForward = Line(position,position + Vector3.Forward * length, Colors.NavyBlue);
+    var meshInstance_AxisUp = Line(position,position + Vector3.Up * length, Colors.WebGreen);
+    var meshInstance_AxisLeft = Line(position,position + Vector3.Left * length, Colors.Red);
+    var meshInstance_AxisForward = Line(position,position + Vector3.Forward * length, Colors.NavyBlue);
 
-    meshInstance_AxisUp.CallDeferred("reparent",helper_node);
-    meshInstance_AxisLeft.CallDeferred("reparent",helper_node);
-    meshInstance_AxisForward.CallDeferred("reparent",helper_node);
+    meshInstance_AxisUp.CallDeferred("reparent",helper_node);
+    meshInstance_AxisLeft.CallDeferred("reparent",helper_node);
+    meshInstance_AxisForward.CallDeferred("reparent",helper_node);
 
-    (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", helper_node);
+    (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", helper_node);
 
-    return helper_node;
+    return helper_node;
 }
 ```
 In this example we create a ‘helper_node’ which contains all of our geometry data. <br>
@@ -277,54 +277,54 @@ Draw3D.cs code:
 ```cs
 public static Node3D Beam(Vector3 from, Vector3 to, float thickness = 0.05f, Color? color = null, int segments = 32, int rings = 4)
 {
-    if (to == from)
-    {
-        GD.PrintErr("Draw3D: The 'from' and 'to' vectors cannot be the same when drawing a beam!");
-        return null;
-    }
-        
-    Node3D helper_node = new Node3D();
+    if (to == from)
+    {
+        GD.PrintErr("Draw3D: The 'from' and 'to' vectors cannot be the same when drawing a beam!");
+        return null;
+    }
+        
+    Node3D helper_node = new Node3D();
 
-    var meshInstance = new MeshInstance3D();
-    var capsuleMesh = new CapsuleMesh();
-    var material = new StandardMaterial3D();
+    var meshInstance = new MeshInstance3D();
+    var capsuleMesh = new CapsuleMesh();
+    var material = new StandardMaterial3D();
 
-    meshInstance.Mesh = capsuleMesh;
-    meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
-    meshInstance.Position = Vector3.Zero;
-    meshInstance.RotationDegrees = new Vector3(90,0,0);
+    meshInstance.Mesh = capsuleMesh;
+    meshInstance.CastShadow = GeometryInstance3D.ShadowCastingSetting.Off;
+    meshInstance.Position = Vector3.Zero;
+    meshInstance.RotationDegrees = new Vector3(90,0,0);
 
-    Vector3 distance = new Vector3(
-        Mathf.Pow(to.X - from.X,2),
-        Mathf.Pow(to.Y - from.Y,2),
-        Mathf.Pow(to.Z - from.Z,2)
-    );
-    capsuleMesh.Height = Mathf.Sqrt(distance.X + distance.Y +distance.Z);
-    capsuleMesh.Radius = thickness;
-    capsuleMesh.RadialSegments = segments;
-    capsuleMesh.Rings = rings;
-    capsuleMesh.Material = material;
+    Vector3 distance = new Vector3(
+        Mathf.Pow(to.X - from.X,2),
+        Mathf.Pow(to.Y - from.Y,2),
+        Mathf.Pow(to.Z - from.Z,2)
+    );
+    capsuleMesh.Height = Mathf.Sqrt(distance.X + distance.Y +distance.Z);
+    capsuleMesh.Radius = thickness;
+    capsuleMesh.RadialSegments = segments;
+    capsuleMesh.Rings = rings;
+    capsuleMesh.Material = material;
 
-    material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
-    material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
-    material.AlbedoColor = color ?? Color.Color8(100,100,100,150);
-        
-    (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", helper_node);
+    material.ShadingMode = StandardMaterial3D.ShadingModeEnum.Unshaded;
+    material.Transparency = BaseMaterial3D.TransparencyEnum.Alpha;
+    material.AlbedoColor = color ?? Color.Color8(100,100,100,150);
+        
+    (Engine.GetMainLoop() as SceneTree).Root.CallDeferred("add_child", helper_node);
 
-    helper_node.CallDeferred("add_child", meshInstance);
+    helper_node.CallDeferred("add_child", meshInstance);
 
-            //  If the vector points are above each other, don't use the LookAt function, it causes errors.
-    if (from.X == to.X && from.Z == to.Z)
-    {
-        helper_node.Position = (from + to) /2;
-        helper_node.RotationDegrees = new Vector3(-90,0,0);
-    }
-    else
-    {
-        helper_node.LookAtFromPosition((from + to) /2,to);
+            //  If the vector points are above each other, don't use the LookAt function, it causes errors.
+    if (from.X == to.X && from.Z == to.Z)
+    {
+        helper_node.Position = (from + to) /2;
+        helper_node.RotationDegrees = new Vector3(-90,0,0);
+    }
+    else
+    {
+        helper_node.LookAtFromPosition((from + to) /2,to);
     }
 
-   return helper_node;
+   return helper_node;
 }
 ```
 To draw a thick line, this script generates a capsule mesh, with the appropriate length(distance of the two points), width, geometrical segments and geometrical rings. <br>
@@ -346,9 +346,9 @@ Vector3 to = new Vector3(3,1,-2);
 
 public override void _PhysicsProcess(double delta)
 {
-    if (line != null)
-        line.QueueFree();
+    if (line != null)
+        line.QueueFree();
 
-    line = Draw3D.Line(from,to,Colors.Red);
+    line = Draw3D.Line(from,to,Colors.Red);
 }
 ```
